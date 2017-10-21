@@ -5,7 +5,7 @@
 			$this->request=$request;
 		}
 		public function index($request=0){
-			echo  'hola Mundo';
+			echo 'hola Mundo';
 		}
 	}
 
