@@ -9,13 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>TecGurus </title>
-   <script src="assets/js/jquery.js"></script>
+  
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Font Awesome -->
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="assets/css/nprogress.css" rel="stylesheet">
+    <!--<link href="assets/css/nprogress.css" rel="stylesheet">-->
 
     <!-- Custom Theme Style -->
     <link href="assets/css/custom.css" rel="stylesheet">
