@@ -21,7 +21,7 @@
 					$result[$i]=$row;
 					$i++;
 				}
-				return json_encode($result);
+				return $result;
 		}
 
 		public function sql_array($atributos,$bandera){
@@ -35,6 +35,31 @@
 				}
 			}
 			return $sql;
+		}
+		public function find($id){
+			$sql='SELECT * FROM '.$this->table.' WHERE id='.$id;
+				$resultado=$this->con->query($sql);
+				$i=0;
+				$result=[];
+				while($row=$resultado->fetch_assoc()){
+					$result[$i]=$row;
+					$i++;
+				}
+				return $result[0];
+		}
+		public function update($array,$id){
+			$contador=0;
+			$sql='UPDATE '.$this->table.' SET ';
+				foreach($array as $llave=>$valor){
+					$sql.=$llave.'="'.$valor.'"';
+					if(count($array)-1>$contador){
+						$sql.=',';
+						$contador++;
+					}
+				}
+			$sql.=' WHERE id='.$id;
+			$resultado=$this->con->query($sql);
+			return $resultado;
 		}
 	}
 ?>
