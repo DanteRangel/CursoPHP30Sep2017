@@ -13,6 +13,12 @@
 			<div class="table-responsive">
 				<table class="table table-striped jambo_table">
 					<thead>
+						<th>
+							<div class="checkbox">
+								Todos
+								<input type="checkbox" class="" id="todos">
+							</div>
+						</th>
 						<th>Nombre</th>
 						<th>Correo</th>
 						<th>Tipo</th>
@@ -23,6 +29,11 @@
 						foreach ($users as $llave => $u) {
 						?>
 								<tr id="tr_<?php echo $u['id'];?>">
+									<td > 
+										<div class="checkbox text-center">
+											<input type="checkbox" class="checkbox_ids" value="" data-id="<?php echo $u['id'];?>"/>
+										</div>
+									</td>
 									<td><?php echo $u['nombre'];?></td>
 									<td><?php echo $u['correo'];?></td>
 									<td>
@@ -47,6 +58,44 @@
 	</div>	
 </div>
 <script>
+var array_ids=[];
+$(document).ready(function(){
+
+	$('.checkbox_ids').click(function(){
+		//console.log(('.checkbox_ids').length);
+		array_ids=getCheck();
+		
+		if(array_ids.length==$('.checkbox_ids').length){
+			$('#todos').prop('checked',true);
+		}else{
+			$('#todos').prop('checked',false);
+		}
+		//console.log(array_ids);
+		//console.log($(this).attr('data-id'));
+	});
+	$('#todos').click(function(){
+		if($(this).prop('checked')){
+			$('.checkbox_ids').prop('checked',true);
+			array_ids=getCheck();
+		}else{
+			$('.checkbox_ids').prop('checked',false);
+			array_ids=getCheck();
+
+		}
+	});	
+});
+function getCheck(){
+	ids=[];
+	$('.checkbox_ids').each(function(){
+			if($(this).prop('checked')){
+				ids.push($(this).attr('data-id'));
+			}
+		});
+	console.log(ids);
+	return ids;
+}
+
+
 	function eliminar(id){
 		$.ajax({
 			'url':'./?controller=User&method=delete',
