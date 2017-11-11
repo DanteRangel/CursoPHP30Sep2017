@@ -36,6 +36,8 @@
 					$sql.=$atributo;
 				else if($bandera=='valor')
 					$sql.='\''. $valor.'\'';
+
+				//mysqli_escape_string('')
 				if(count($atributos)-1>$contador){
 					$sql.=',';
 					$contador++;
@@ -68,13 +70,20 @@
 			return $resultado;	
 		}
 		public function destroy($arreglo=array()){
+			$contador=0;
 			$sql='';
+			$sql.='DELETE FROM '.$this->table.' WHERE id IN(';
 			for($i=0;$i<count($arreglo);$i++){
-				$sql.='DELETE FROM '.$this->table.' WHERE id='.$arreglo[$i].';';
+				$sql.=$arreglo[$i];
+				if(count($arreglo)-1>$contador){
+					$sql.=',';
+					$contador++;
+				}
 			}
-			
+			$sql.=');';
 			$resultado=$this->con->query($sql);
 			return $resultado;	
 		}
+
 	}
 ?>

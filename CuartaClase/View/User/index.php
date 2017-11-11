@@ -53,6 +53,7 @@
 					</tbody>
 
 				</table>
+				<button class="btn btn-danger" onclick="destroy();" style="display:none;" id="eliminarMul">Eliminar</button>
 			</div>
 		</div>
 	</div>	
@@ -84,19 +85,40 @@ $(document).ready(function(){
 		}
 	});	
 });
-function getCheck(){
-	ids=[];
-	$('.checkbox_ids').each(function(){
-			if($(this).prop('checked')){
-				ids.push($(this).attr('data-id'));
+	function getCheck(){
+		ids=[];
+		$('.checkbox_ids').each(function(){
+				if($(this).prop('checked')){
+					ids.push($(this).attr('data-id'));
+				}
+			});
+		//console.log(ids);
+		if(ids.length>1){
+			$('#eliminarMul').show('slow');
+			$('#eliminarMul').text('Eliminar ('+ids.length+')');
+		}else{
+			$('#eliminarMul').hide('slow');
+		}
+		return ids;
+	}
+	function destroy(){
+		$.ajax({
+			'url':'./?controller=User&method=destroy',
+			'data':{ids:array_ids},
+			'type':'POST',
+			success:function(response){
+				console.log(response);
+				if(response.code==1){
+					for(i=0;i<array_ids.length;i++){
+						$('#tr_'+array_ids[i]).remove();	
+					}
+				}else{
+					alert('Error en el servidor');
+				}
 			}
 		});
-	console.log(ids);
-	return ids;
-}
-
-
-	function eliminar(id){
+	}
+	function eliminar(id){r
 		$.ajax({
 			'url':'./?controller=User&method=delete',
 			'data':{'id':id},

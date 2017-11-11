@@ -65,6 +65,17 @@
 			}
 
 		}
+		public function destroy($request=0){
+			$user=new User();
+			$resultado=$user->destroy($_POST['ids']);
+			#$resultado=true;	
+			header('Content-type: application/json');
+			if($resultado){
+				echo json_encode(array('code'=>1,'message'=>'Se ha a eliminado correctamente','resultado'=>$resultado));
+			}else{
+				echo json_encode(array('code'=>0,'message'=>'Error en el servidor','resultado'=>$resultado));
+			}
+		}
 
 	}
 	return new UserController($_REQUEST);
