@@ -102,6 +102,7 @@ $(document).ready(function(){
 		return ids;
 	}
 	function destroy(){
+
 		$.ajax({
 			'url':'./?controller=User&method=destroy',
 			'data':{ids:array_ids},
@@ -112,13 +113,14 @@ $(document).ready(function(){
 					for(i=0;i<array_ids.length;i++){
 						$('#tr_'+array_ids[i]).remove();	
 					}
+					$('#eliminarMul').hide();
 				}else{
 					alert('Error en el servidor');
 				}
 			}
 		});
 	}
-	function eliminar(id){r
+	function eliminar(id){
 		$.ajax({
 			'url':'./?controller=User&method=delete',
 			'data':{'id':id},
